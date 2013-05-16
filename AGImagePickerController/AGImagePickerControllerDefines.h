@@ -59,6 +59,7 @@
 
 typedef void (^AGIPCDidFinish)(NSArray *info);
 typedef void (^AGIPCDidFail)(NSError *error);
+typedef BOOL (^AGIPCIsSaved)(ALAsset *asset);
 
 typedef NS_ENUM(NSUInteger, AGDeviceType)
 {

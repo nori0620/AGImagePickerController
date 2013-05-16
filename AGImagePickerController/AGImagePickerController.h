@@ -74,6 +74,7 @@ shouldShowToolbarForManagingTheSelectionInSelectionMode:(AGImagePickerController
 
 @property (nonatomic, copy) AGIPCDidFail didFailBlock;
 @property (nonatomic, copy) AGIPCDidFinish didFinishBlock;
+@property (nonatomic, copy) AGIPCIsSaved isSavedBlock;
 
 @property (nonatomic, strong) NSArray *toolbarItemsForManagingTheSelection;
 @property (nonatomic, strong) NSArray *selection;

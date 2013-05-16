@@ -158,11 +158,40 @@ static NSUInteger numberOfSelectedGridItems = 0;
         self.checkmarkImageView.hidden = !self.selected;
 		[self addSubview:self.checkmarkImageView];
         
+        // show is savedImage
+        [self performSelectorInBackground:@selector(addSavedViewIfNeed:) withObject:asset];
+            
         self.asset = asset;
     }
     
     return self;
 }
+
+- (void) addSavedViewIfNeed:(ALAsset *)asset{
+    if( self.imagePickerController.isSavedBlock && self.imagePickerController.isSavedBlock(asset) ){
+        CGSize LAVEL_SIZE = CGSizeMake(45,25);
+        
+        CGRect frame = self.imagePickerController.itemRect;
+        UIView *isSavedView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        isSavedView.backgroundColor = [UIColor blackColor];
+        isSavedView.alpha = .4f;
+        
+        UILabel *savedLabel = [[UILabel alloc] initWithFrame: CGRectMake(
+             frame.size.width  - LAVEL_SIZE.width,
+             frame.size.height - LAVEL_SIZE.height,
+             LAVEL_SIZE.width,
+             LAVEL_SIZE.height
+        )];
+        savedLabel.text = @"Saved";
+        savedLabel.backgroundColor = [UIColor clearColor];
+        savedLabel.textColor = [UIColor whiteColor];
+        savedLabel.font =  [UIFont systemFontOfSize:14.0];
+        [self insertSubview:isSavedView belowSubview:self.selectionView];
+        [self insertSubview:savedLabel  belowSubview:self.selectionView];
+    }
+}
+
+
 
 #pragma mark - Others
 

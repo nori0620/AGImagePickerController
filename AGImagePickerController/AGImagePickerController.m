@@ -37,7 +37,9 @@
 
 @synthesize
     didFailBlock,
-    didFinishBlock;
+    didFinishBlock,
+    isSavedBlock
+;
 
 @synthesize
     toolbarItemsForManagingTheSelection = _toolbarItemsForManagingTheSelection,
