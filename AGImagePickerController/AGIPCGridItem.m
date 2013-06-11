@@ -157,37 +157,35 @@ static NSUInteger numberOfSelectedGridItems = 0;
             self.checkmarkImageView.image = [UIImage imageNamed:@"AGImagePickerController.bundle/AGIPC-Checkmark-iPhone"];
         self.checkmarkImageView.hidden = !self.selected;
 		[self addSubview:self.checkmarkImageView];
+        [self addSavedViewIfNeed:asset];
         
-        // show is savedImage
-        [self performSelectorInBackground:@selector(addSavedViewIfNeed:) withObject:asset];
-            
         self.asset = asset;
     }
     
     return self;
 }
 
+
 - (void) addSavedViewIfNeed:(ALAsset *)asset{
     if( self.imagePickerController.isSavedBlock && self.imagePickerController.isSavedBlock(asset) ){
-        CGSize LAVEL_SIZE = CGSizeMake(45,25);
+        UIImage *savedTextImage = [ UIImage
+            imageNamed:@"AGImagePickerController.bundle/AGIPC-Saved"
+        ];
         
         CGRect frame = self.imagePickerController.itemRect;
         UIView *isSavedView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         isSavedView.backgroundColor = [UIColor blackColor];
-        isSavedView.alpha = .4f;
+        isSavedView.alpha = .6f;
         
-        UILabel *savedLabel = [[UILabel alloc] initWithFrame: CGRectMake(
-             frame.size.width  - LAVEL_SIZE.width,
-             frame.size.height - LAVEL_SIZE.height,
-             LAVEL_SIZE.width,
-             LAVEL_SIZE.height
+        UIImageView *savedText = [[UIImageView alloc] initWithFrame: CGRectMake(
+             (frame.size.width  - savedTextImage.size.width)/2,
+             (frame.size.height - savedTextImage.size.height)/2,
+             savedTextImage.size.width,
+             savedTextImage.size.height
         )];
-        savedLabel.text = @"Saved";
-        savedLabel.backgroundColor = [UIColor clearColor];
-        savedLabel.textColor = [UIColor whiteColor];
-        savedLabel.font =  [UIFont systemFontOfSize:14.0];
+        savedText.image = savedTextImage;
         [self insertSubview:isSavedView belowSubview:self.selectionView];
-        [self insertSubview:savedLabel  belowSubview:self.selectionView];
+        [self insertSubview:savedText belowSubview:self.selectionView];
     }
 }
 
