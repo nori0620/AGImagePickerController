@@ -36,8 +36,10 @@
         if (_items != items)
         {
             for (UIView *view in [self subviews]) 
-            {		
-                [view removeFromSuperview];
+            {
+                if( [view isKindOfClass:[AGIPCGridItem class]] ){
+                    [view removeFromSuperview];
+                }
             }
             
             _items = items;

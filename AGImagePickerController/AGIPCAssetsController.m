@@ -281,7 +281,7 @@
     
     __ag_weak AGIPCAssetsController *weakSelf = self;
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+    //dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         
         __strong AGIPCAssetsController *strongSelf = weakSelf;
         
@@ -309,7 +309,7 @@
             
         });
         
-    });
+    //});
 }
 
 - (void)reloadData
